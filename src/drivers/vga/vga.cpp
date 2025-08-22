@@ -15,6 +15,16 @@ void terminal_putchar(int x, int y, char c, char colour) {
     video_mem[(y * VGA_WIDTH) + x] = terminal_make_char(c, colour);
 }
 
+void limpiar_pantalla() {
+    for (int y = 0; y < VGA_HEIGHT; y++) {
+        for (int x = 0; x < VGA_WIDTH; x++) {
+            terminal_putchar(x, y, ' ', 0);
+        }
+    }
+    terminal_row = 0;
+    terminal_col = 0;
+}
+
 void terminal_writechar(char c, char colour) {
     if(c == '\n') {
         terminal_row += 1;
